@@ -10,7 +10,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - run: python -m pip install -r requirements.txt
       - run: python -m pytest -q
       - run: python run_experiment.py --output results/receipt-check.json
       - run: python -c "import json; r=json.load(open('results/receipt-check.json')); assert all(r['gates'].values())"
+      - run: node --check site.js
+      - run: node --test tests/site.test.cjs
+      - run: python -c "from pathlib import Path; s=Path('index.html').read_text(); assert all(t in s for t in ['site.css','site.js','id=\"experiment\"','id=\"evidence\"','id=\"next\"'])"
