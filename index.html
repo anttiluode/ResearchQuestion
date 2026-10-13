@@ -8,6 +8,7 @@
   <title>ResearchQuestion — What must memory keep?</title>
   <link rel="stylesheet" href="./site.css">
   <script defer src="./site.js"></script>
+  <script defer src="./learned-site.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to experiment</a>
@@ -18,7 +19,7 @@
     <nav aria-label="Site navigation">
       <a href="#experiment">Experiment</a>
       <a href="#principle">Principle</a>
-      <a href="#evidence">Evidence</a>
+      <a href="#evidence">Evidence</a><a href="#learned">Learned v2</a>
       <a href="#next">Next model</a>
     </nav>
     <a class="header-link" href="https://github.com/anttiluode/ResearchQuestion" target="_blank" rel="noreferrer">Source <span aria-hidden="true">↗</span></a>
@@ -172,8 +173,62 @@
       <p class="limits">The closure is engineered: the experimenter knows the hidden basis and the update law. The full simulator calls that same compact-law implementation. These checks establish the intended mechanism and a paired-state failure case; they do not establish a learned visual encoder, a biological memory or a cheaper AI model.</p>
     </section>
 
+
+    <section id="learned" class="learned-section section-wrap">
+      <div class="section-heading">
+        <div>
+          <div class="section-index">04 / LEARNED MEMORY, WITHOUT THE ORACLE</div>
+          <h2>Can the system <em>learn</em> what survives?</h2>
+          <p>This time the encoder does not know the hidden 32-dimensional basis. It sees only twelve mixed sensor channels and three frames of history before predicting six action-dependent futures.</p>
+        </div>
+        <span class="proposal-pill measured-pill">MEASURED · SYNTHETIC</span>
+      </div>
+      <div class="learned-layout">
+        <div class="learned-chart-panel">
+          <div class="learned-controls">
+            <label for="learned-world">World
+              <select id="learned-world">
+                <option value="bridge">Bridge feeds back</option>
+                <option value="closed">Bridge cannot feed back</option>
+              </select>
+            </label>
+            <label for="learned-metric">Prediction range
+              <select id="learned-metric">
+                <option value="future_nrmse">All six steps</option>
+                <option value="early_nrmse">Steps 1–3</option>
+                <option value="late_nrmse">Steps 4–6</option>
+              </select>
+            </label>
+          </div>
+          <p class="learned-chart-key">Held-out normalized error · <strong>shorter bars are better</strong></p>
+          <div id="learned-bars" class="learned-bars" aria-label="Future prediction errors for four learned and reconstruction baselines">
+            <div class="learned-bar-item"><div class="learned-bar-heading"><span>Predictive · 4 numbers</span><strong data-method-value="predictive4">0.200</strong></div><div class="learned-track"><div class="learned-bar regular" data-method-bar="predictive4" style="width:25%"></div></div></div>
+            <div class="learned-bar-item"><div class="learned-bar-heading"><span>Predictive · 5 numbers</span><strong data-method-value="predictive5">0.157</strong></div><div class="learned-track"><div class="learned-bar focus" data-method-bar="predictive5" style="width:20%"></div></div></div>
+            <div class="learned-bar-item"><div class="learned-bar-heading"><span>PCA · 5 numbers</span><strong data-method-value="pca5">0.782</strong></div><div class="learned-track"><div class="learned-bar alternate" data-method-bar="pca5" style="width:98%"></div></div></div>
+            <div class="learned-bar-item"><div class="learned-bar-heading"><span>GRU · 5 numbers</span><strong data-method-value="gru5">0.247</strong></div><div class="learned-track"><div class="learned-bar alternate" data-method-bar="gru5" style="width:31%"></div></div></div>
+          </div>
+          <div class="learned-chart-bottom">
+            <span id="learned-status">Average across two fixed apparatus seeds · 400 held-out episodes per seed</span>
+            <a href="./results/learned_v2_summary.json" target="_blank" rel="noreferrer">View data ↗</a>
+          </div>
+        </div>
+        <div class="learned-description">
+          <div class="card-overline">WHAT CHANGED AFTER THE ORIGINAL PROOF</div>
+          <h3>No privileged encoder.<br><em>No exact answer.</em></h3>
+          <p>Each candidate must infer a compact, self-updating state from observations and supervised consequences. After the initial window, no new sensor data are supplied during the six-step prediction.</p>
+          <div class="learned-fact"><strong>20 bytes</strong><span>Five stored float32 values per memory, excluding shared model weights, the observation buffer, and training cost.</span></div>
+          <div class="learned-fact"><strong>381</strong><span>Shared trainable parameters in the five-coordinate predictive model. The conventional GRU baseline uses 501.</span></div>
+        </div>
+      </div>
+      <div class="insight-strip learned-caution">
+        <div class="insight-icon">≠</div>
+        <p><strong>The inconvenient detail matters:</strong> five coordinates also outperform four in the <em>closed</em> world, where no bridge is causally required. So this does not establish that the trained encoder independently discovered the true fifth residue. All predictions retain significant error. The PCA and GRU comparisons use one fixed training recipe, not exhaustive architecture searches.</p>
+      </div>
+      <p class="instrument-note">The original browser instrument above still illustrates the hand-designed v1 mechanism. This section reports a separate v2 PyTorch learning experiment, trained on two synthetic apparatus seeds. Neither is yet an image model.</p>
+    </section>
+
     <section id="next" class="next-section section-wrap">
-      <div class="section-heading"><div><div class="section-index">04 / THE NEXT QUESTION</div><h2>From a toy state <em>to a visual memory.</em></h2><p>What would an image model have to learn rather than receive from the experimenter?</p></div><span class="proposal-pill">PROPOSED · NOT TRAINED</span></div>
+      <div class="section-heading"><div><div class="section-index">05 / THE NEXT QUESTION</div><h2>From a toy state <em>to a visual memory.</em></h2><p>What would an image model have to learn rather than receive from the experimenter?</p></div><span class="proposal-pill">PROPOSED · NOT TRAINED</span></div>
       <div class="roadmap">
         <article><div class="step-id">01</div><div class="roadmap-icon">◫</div><h3>Observe a scene</h3><p>Use short clips, not a single static image, so the model can distinguish otherwise identical snapshots with different histories.</p></article>
         <div class="roadmap-chevron" aria-hidden="true">→</div>
