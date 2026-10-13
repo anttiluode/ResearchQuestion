@@ -1,6 +1,8 @@
 """Optional PyTorch v2 tests: pytest -q tests/test_learned_memory.py."""
 import numpy as np
-import torch
+import pytest
+
+torch = pytest.importorskip('torch')
 
 from learned_memory import (
     make_apparatus, evolve, build_splits, Standardizer, Predictor, HORIZON, QUERIES
