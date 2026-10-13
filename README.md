@@ -1,5 +1,8 @@
 # ResearchQuestion — What must a memory preserve?
 
+> **Interactive site:** [ResearchQuestion — Future-Sufficient Memory Lab](https://anttiluode.github.io/ResearchQuestion/) — a browser-based, no-build visual explanation of when a discarded residue matters. It lets you switch a causal bridge on/off, retain four or five numbers, choose actions and questions, and compare the full system against a compact updater. The site's coefficients are illustrative and **not** the published seeded Python receipt. The recorded study remains below.
+
+
 An experiment growing from the January image-mandala → Sihti → Sihti2 → SighImageFactorization → VMN / MovingTarget conversation.
 
 > **Can a small code predict and update future responses of a much larger system without retaining every residue of the original state?**
