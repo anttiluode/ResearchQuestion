@@ -1,0 +1,55 @@
+name: Classical ERA baseline (v2b)
+
+on:
+  pull_request:
+    paths:
+      - 'era_baseline.py'
+      - 'tests/test_era_baseline.py'
+      - 'PROTOCOL_ERA.md'
+      - 'results/era_v2b_summary.json'
+      - 'scripts/check_era_receipt.py'
+      - 'scripts/compare_era_learned.py'
+      - '.github/workflows/era.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  era-vs-learned:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numeric and test dependencies
+        run: python -m pip install "numpy>=1.24,<3" "scipy>=1.11" "pytest>=8,<10"
+      - name: Install PyTorch CPU
+        run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: ERA recovers an exact switched system
+        run: python -m pytest -q tests/test_era_baseline.py
+      - name: Regenerate classical ERA receipt
+        run: python era_baseline.py --output era-reproduction.json
+      - name: Compare ERA with committed means
+        run: python scripts/check_era_receipt.py era-reproduction.json
+      - name: Regenerate the learned v2 run (per-episode errors)
+        run: python learned_memory.py --output learned-reproduction.json
+      - name: Learned run still matches its published receipt
+        run: python scripts/check_learned_receipt.py learned-reproduction.json
+      - name: Episode-paired comparison
+        run: python scripts/compare_era_learned.py learned-reproduction.json era-reproduction.json era-paired.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: era-v2b-receipts
+          path: |
+            era-reproduction.json
+            learned-reproduction.json
+            era-paired.json
+          if-no-files-found: ignore

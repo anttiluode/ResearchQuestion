@@ -20,6 +20,10 @@ jobs:
       - run: python -m py_compile learned_memory.py
       - run: node --check site.js
       - run: node --check learned-site.js
+      - run: node --check era-site.js
+      - run: python -m py_compile era_baseline.py
       - run: node --test tests/site.test.cjs
       - run: python -c "from pathlib import Path; s=Path('index.html').read_text(); assert all(t in s for t in ['site.css','site.js','id=\"experiment\"','id=\"evidence\"','id=\"next\"','id=\"learned\"','learned-site.js'])"
       - run: python -c "import json; d=json.load(open('results/learned_v2_summary.json')); assert len(d['runs']) == 16 and len(d['apparatus_seeds']) == 2"
+      - run: python -c "import json; d=json.load(open('results/era_v2b_summary.json')); assert set(d['means'])=={'closed','bridge'} and 'learned_v2_reference' in d"
+      - run: python -c "from pathlib import Path; s=Path('index.html').read_text(); assert 'id=\"classical\"' in s and 'era-site.js' in s"
