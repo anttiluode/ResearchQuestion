@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090f1b">
+  <meta name="description" content="An interactive research instrument: when does a compact memory preserve the future, and when must an invisible residue survive?">
+  <title>ResearchQuestion — What must memory keep?</title>
+  <link rel="stylesheet" href="./site.css">
+  <script defer src="./site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to experiment</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="ResearchQuestion home"><span class="brand-mark" aria-hidden="true">R<span>∷</span>Q</span><span class="brand-label">RESEARCH<span>QUESTION</span><small>DIMENSIONAL TRANSFER LAB</small></span></a>
+    <nav aria-label="Site navigation">
+      <a href="#experiment">Experiment</a>
+      <a href="#principle">Principle</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#next">Next model</a>
+    </nav>
+    <a class="header-link" href="https://github.com/anttiluode/ResearchQuestion" target="_blank" rel="noreferrer">Source <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <section class="hero section-wrap" id="top">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> AN EXPERIMENT ABOUT FUTURE-SUFFICIENT MEMORY <span class="eyebrow-line"></span> 2026 / 10</div>
+        <h1>What must a <em>memory</em> <span class="keep">keep<span class="question-mark">?</span></span></h1>
+        <p class="hero-lead">Two systems can look identical <strong>right now</strong>—and still behave differently after the same interaction. Explore the residue that makes the difference.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#experiment">Open the experiment <span aria-hidden="true">↘</span></a>
+          <a class="subtle-link" href="#principle">Understand the question <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-meta"><span><span class="meta-glyph">◎</span> 32-dimensional system</span><span><span class="meta-glyph">◈</span> 4–5 relevant coordinates</span><span><span class="meta-glyph">⌁</span> Verified synthetic gates</span></div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-header"><span>THE SAME PRESENT</span><span class="hero-visual-signal">○ ○ / MATCH</span></div>
+        <div class="hero-arcs"><span></span><span></span><span></span><span></span></div>
+        <div class="hero-figures">
+          <div class="hero-world"><div class="hero-orbit"><span class="hero-dot blue"></span></div><small>STATE A</small></div>
+          <div class="hero-equals">≡<small>NOW</small></div>
+          <div class="hero-world"><div class="hero-orbit"><span class="hero-dot orange"></span></div><small>STATE B</small></div>
+        </div>
+        <div class="hero-visual-divider"></div>
+        <div class="hero-visual-footer"><span>ONE HIDDEN DIFFERENCE</span><strong>≠</strong><span>THE SAME FUTURE</span></div>
+      </div>
+    </section>
+
+    <section class="stat-band section-wrap" aria-label="Main dimensional counts">
+      <div><span class="stat-number">32<span class="stat-unit">D</span></span><span class="stat-caption">FULL DYNAMICS</span></div>
+      <div class="stat-sep"></div>
+      <div><span class="stat-number cyan">4<span class="stat-unit">D</span></span><span class="stat-caption">PRESENT ANSWERS</span></div>
+      <div class="stat-sep"></div>
+      <div><span class="stat-number warm">+1<span class="stat-unit">D</span></span><span class="stat-caption">FUTURE-RELEVANT RESIDUE</span></div>
+      <div class="stat-sep"></div>
+      <div><span class="stat-number">27<span class="stat-unit">D</span></span><span class="stat-caption">DISPENSABLE FOR THIS TASK</span></div>
+    </section>
+
+    <section id="experiment" class="experiment-section section-wrap">
+      <div class="section-heading">
+        <div><div class="section-index">01 / INTERACTIVE INSTRUMENT</div><h2>The residue experiment<span class="period">.</span></h2><p>Keep four core numbers—or keep the fifth, initially invisible bridge. Then apply actions and watch their consequences.</p></div>
+        <div class="lab-pill"><span class="live-dot"></span> LIVE IN YOUR BROWSER</div>
+      </div>
+      <div class="experiment-grid">
+        <aside class="control-panel">
+          <div class="panel-topline"><span>CONTROLS</span><span>RQ / 01</span></div>
+          <fieldset class="control-group">
+            <legend>01 <span>Choose the world</span></legend>
+            <div class="segmented" role="group" aria-label="World">
+              <button type="button" class="active" data-world="bridge" aria-pressed="true">Bridge world</button>
+              <button type="button" data-world="closed" aria-pressed="false">Closed world</button>
+            </div>
+            <p class="help" id="world-help">The bridge can influence the next core state.</p>
+          </fieldset>
+          <fieldset class="control-group">
+            <legend>02 <span>Choose what memory keeps</span></legend>
+            <div class="segmented" role="group" aria-label="Memory code">
+              <button type="button" class="active" data-code="4" aria-pressed="true">4 numbers</button>
+              <button type="button" data-code="5" aria-pressed="false">5 numbers</button>
+            </div>
+            <p class="help" id="code-help">The compact model discards the bridge residue.</p>
+          </fieldset>
+          <div class="control-group slider-group">
+            <div class="slider-heading"><label for="bridge-value">03 <span>Hidden bridge residue</span></label><output id="bridge-readout" for="bridge-value">+1.30</output></div>
+            <input id="bridge-value" type="range" min="-1.5" max="1.5" step="0.05" value="1.3">
+            <div class="slider-labels"><span>−1.5</span><span>0</span><span>+1.5</span></div>
+            <p class="help">Changes a hidden variable, not any of the six initial answers. Changing it resets the run.</p>
+          </div>
+          <div class="control-group">
+            <label for="query-select" class="field-label">04 <span>Which answer should we inspect?</span></label>
+            <select id="query-select"><option value="0">Query 1 — position-like response</option><option value="1">Query 2 — relation A</option><option value="2">Query 3 — relation B</option><option value="3">Query 4 — mixed signal</option><option value="4">Query 5 — detail</option><option value="5">Query 6 — alternate view</option></select>
+          </div>
+          <div class="control-group">
+            <div class="field-label">05 <span>Apply the same interaction</span></div>
+            <div class="action-grid">
+              <button class="action-button selected" type="button" data-action="0" aria-pressed="true">A<span>01</span></button>
+              <button class="action-button" type="button" data-action="1" aria-pressed="false">B<span>02</span></button>
+              <button class="action-button" type="button" data-action="2" aria-pressed="false">C<span>03</span></button>
+              <button class="action-button" type="button" data-action="3" aria-pressed="false">D<span>04</span></button>
+            </div>
+          </div>
+          <div class="control-buttons"><button class="primary-button run-button" type="button" id="step-button">Apply action <span aria-hidden="true">→</span></button><button type="button" class="reset-button" id="reset-button">↺ Reset</button></div>
+          <p class="keyboard-hint">Tip: try Bridge world → 4 numbers → Apply action, then compare against 5 numbers.</p>
+        </aside>
+
+        <div class="experiment-display">
+          <div class="display-toolbar"><span><span class="status-dot"></span> COMPUTATIONAL READOUT</span><span id="step-count">STEP 00 / 12</span></div>
+          <div class="readout-intro"><h3>Same now. <em>Different later?</em></h3><p>The full system and a compact model begin with matching answers. Both receive exactly the same action.</p></div>
+          <div class="readout-states">
+            <div class="state-card true-state">
+              <div class="state-card-heading"><span class="label-dot"></span> FULL SYSTEM <small>32 DIMENSIONS</small></div>
+              <div class="response-track"><div class="track-line"></div><div id="true-orb" class="state-orb orb-true"></div><span class="zero-marker"></span></div>
+              <div class="response-value"><span>Current answer</span><strong id="true-value">+0.0000</strong></div>
+            </div>
+            <div class="state-card code-state">
+              <div class="state-card-heading"><span class="label-dot"></span> COMPACT MODEL <small id="code-dim-label">4 DIMENSIONS</small></div>
+              <div class="response-track"><div class="track-line"></div><div id="code-orb" class="state-orb orb-code"></div><span class="zero-marker"></span></div>
+              <div class="response-value"><span>Predicted answer</span><strong id="code-value">+0.0000</strong></div>
+            </div>
+          </div>
+          <div class="difference-bar"><div><span>ANSWER DIFFERENCE</span><strong id="difference-value">0.000000</strong></div><span id="difference-state" class="difference-pill">AGREEMENT</span></div>
+          <div class="chart-card">
+            <div class="chart-top"><div><h4>Response trajectory</h4><p>Actual answer versus compact prediction</p></div><div class="chart-key"><span><i class="key-true"></i> Full</span><span><i class="key-code"></i> Code</span></div></div>
+            <svg id="trajectory-chart" viewBox="0 0 760 220" role="img" aria-label="Line chart of actual and predicted response by step">
+              <line x1="45" y1="107" x2="730" y2="107" stroke="#344356" stroke-dasharray="3 6"></line>
+              <path id="true-path" d="" fill="none" stroke="#67e4da" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+              <path id="code-path" d="" fill="none" stroke="#ffbb84" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+              <g id="chart-labels"></g>
+            </svg>
+          </div>
+          <div class="twin-row">
+            <div><span class="twin-mini-label">IDENTICAL PRESENT</span><strong id="twin-now">0.000000</strong><small>Difference between twins before any action</small></div>
+            <div class="twin-arrow">→</div>
+            <div><span class="twin-mini-label">POSSIBLY DIFFERENT FUTURE</span><strong id="twin-future">0.000000</strong><small>After identical actions with opposite hidden bridge</small></div>
+          </div>
+          <div id="lab-message" class="lab-message" role="status" aria-live="polite">Every present answer matches. The bridge is invisible until an interaction lets it influence the future.</div>
+        </div>
+      </div>
+      <p class="instrument-note"><strong>What you are operating:</strong> a self-contained, deterministic 32-variable <em>illustration</em> of the same nonlinear mechanism class as the repository's frozen experiment. Its coefficients are chosen for the web demo, so its live numbers are <strong>not</strong> the eight-seed Python receipt. The results below come from the measured code.</p>
+    </section>
+
+    <section id="principle" class="principle-section section-wrap">
+      <div class="section-heading"><div><div class="section-index">02 / THE MATHEMATICAL TEST</div><h2>Compression is not enough<span class="period">.</span></h2><p>A code must survive the next interaction, not merely answer the current question.</p></div></div>
+      <div class="principle-grid">
+        <article class="formula-card">
+          <div class="card-overline">THE CLOSURE CONDITION</div>
+          <div class="equation" role="math" aria-label="E of F of X comma a equals g of E of X comma a">E(F(X, a)) <span>=</span> g(E(X), a)</div>
+          <p>If two complete states share a memory code, applying the same permitted action must lead to the <em>same next code</em>.</p>
+          <div class="card-foot"><span>01</span> A FUTURE-SUFFICIENT REPRESENTATION</div>
+        </article>
+        <article class="formula-card other-formula">
+          <div class="card-overline">THE RESIDUE LEDGER</div>
+          <div class="equation small-equation" role="math" aria-label="X equals core plus bridge residue plus nuisance residue">X <span>=</span> core + R<sub>bridge</sub> + R<sub>nuisance</sub></div>
+          <p>Keeping every residue reconstructs the past. Keeping <em>only future-relevant residues</em> may be enough to preserve the computation.</p>
+          <div class="card-foot"><span>02</span> SIHTI-INSPIRED BOOKKEEPING</div>
+        </article>
+      </div>
+      <div class="insight-strip"><div class="insight-icon">↳</div><p><strong>What the hidden fifth number does:</strong> it changes no current answer. But in the bridge world it alters the next core state. The 27 other coordinates continue to evolve without feeding back into the permitted answers.</p></div>
+    </section>
+
+    <section id="evidence" class="evidence-section section-wrap">
+      <div class="section-heading"><div><div class="section-index">03 / RECORDED RESULTS</div><h2>The measured boundary<span class="period">.</span></h2><p>These results belong to the preregistered synthetic Python experiment, not the browser illustration above.</p></div><a class="subtle-link" href="./results/summary.json" target="_blank" rel="noreferrer">Machine-readable results ↗</a></div>
+      <div class="result-cards">
+        <article class="result-card"><div class="result-heading"><span>01</span> CLOSED WORLD</div><strong class="result-number">≈ 0<small> ERROR</small></strong><p>Four numbers correctly update every measured future response when the bridge cannot feed back.</p><div class="result-footer good">4 COORDINATES ARE SUFFICIENT</div></article>
+        <article class="result-card featured-result"><div class="result-heading"><span>02</span> BRIDGE WORLD, 4 STORED</div><strong class="result-number">0.274<small> NRMSE</small></strong><p>All initial answers match, but future predictions fail after the causally relevant residue is discarded.</p><div class="result-footer bad">PRESENT ACCURACY ≠ FUTURE SUFFICIENCY</div></article>
+        <article class="result-card"><div class="result-heading"><span>03</span> BRIDGE WORLD, 5 STORED</div><strong class="result-number">≈ 0<small> ERROR</small></strong><p>Keeping one additional coordinate restores machine-precision prediction under the allowed actions.</p><div class="result-footer good">ONE RESIDUE CLOSES THE FUTURE</div></article>
+      </div>
+      <div class="validation"><span><strong>8 / 8</strong> fixed gates passed</span><span><strong>8</strong> random seeds</span><span><strong>32 / 32</strong> full Jacobian rank</span><span><strong>11</strong> repository tests</span></div>
+      <p class="limits">The closure is engineered: the experimenter knows the hidden basis and the update law. The full simulator calls that same compact-law implementation. These checks establish the intended mechanism and a paired-state failure case; they do not establish a learned visual encoder, a biological memory or a cheaper AI model.</p>
+    </section>
+
+    <section id="next" class="next-section section-wrap">
+      <div class="section-heading"><div><div class="section-index">04 / THE NEXT QUESTION</div><h2>From a toy state <em>to a visual memory.</em></h2><p>What would an image model have to learn rather than receive from the experimenter?</p></div><span class="proposal-pill">PROPOSED · NOT TRAINED</span></div>
+      <div class="roadmap">
+        <article><div class="step-id">01</div><div class="roadmap-icon">◫</div><h3>Observe a scene</h3><p>Use short clips, not a single static image, so the model can distinguish otherwise identical snapshots with different histories.</p></article>
+        <div class="roadmap-chevron" aria-hidden="true">→</div>
+        <article><div class="step-id">02</div><div class="roadmap-icon">⌁</div><h3>Learn what to retain</h3><p>Store appearance, object relationships and selected detail—plus motion or uncertainty when future actions require it.</p></article>
+        <div class="roadmap-chevron" aria-hidden="true">→</div>
+        <article><div class="step-id">03</div><div class="roadmap-icon">↗</div><h3>Ask, edit, update</h3><p>Compare predictions after edits, occlusions and new observations. Scramble relationships to test whether they actually help.</p></article>
+      </div>
+      <div class="next-question"><div><span>THE NEXT FALSIFIER</span><h3>Hide the encoder's privileged coordinates.</h3><p>Learn a compact, self-updating representation from limited observations, and test it against ordinary recurrent models under matched total costs.</p></div><a href="https://github.com/anttiluode/ResearchQuestion/blob/main/PROTOCOL.md" target="_blank" rel="noreferrer" class="outline-button">Read the protocol ↗</a></div>
+    </section>
+  </main>
+  <footer class="footer section-wrap"><span><span class="brand-mark mini">R<span>∷</span>Q</span> ResearchQuestion — a mechanism isolator, not a grand unified theory.</span><div><a href="https://github.com/anttiluode/Sihti">Sihti</a><a href="https://github.com/anttiluode/VMN">VMN</a><a href="https://github.com/anttiluode/Genealogy">Genealogy</a><a href="https://github.com/anttiluode/ResearchQuestion">GitHub ↗</a></div></footer>
+</body>
+</html>
