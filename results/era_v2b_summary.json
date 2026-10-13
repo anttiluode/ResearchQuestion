@@ -123,7 +123,73 @@
   "limits": [
     "Two apparatus seeds only",
     "The PEM rows are post-hoc diagnostics, not frozen comparisons",
-    "Episode-level paired tests against v2 need the learned run regenerated (done in CI); the published v2 summary has no per-episode errors",
     "Linear models on a nonlinear fixture; no claim about natural images"
-  ]
+  ],
+  "paired_vs_regenerated_v2": {
+    "source": "CI run 38402521300: v2 learned run regenerated with torch (matched its receipt), ERA regenerated (matched its receipt); 800 test episodes per world (2 seeds x 400); bootstrap 4000; positive = ERA-side worse",
+    "closed": {
+      "era5_vs_predictive5": {
+        "mean": 0.22907,
+        "ci95": [
+          0.21861,
+          0.23943
+        ]
+      },
+      "era4_vs_predictive4": {
+        "mean": 0.21784,
+        "ci95": [
+          0.20758,
+          0.22764
+        ]
+      },
+      "era5_pem_posthoc_vs_predictive5": {
+        "mean": -0.02098,
+        "ci95": [
+          -0.02594,
+          -0.01561
+        ],
+        "era_side_wins": 0.625
+      },
+      "era4_pem_posthoc_vs_predictive4": {
+        "mean": -0.03731,
+        "ci95": [
+          -0.04201,
+          -0.03248
+        ],
+        "era_side_wins": 0.698
+      }
+    },
+    "bridge": {
+      "era5_vs_predictive5": {
+        "mean": 0.25729,
+        "ci95": [
+          0.24748,
+          0.26693
+        ]
+      },
+      "era4_vs_predictive4": {
+        "mean": 0.34497,
+        "ci95": [
+          0.33201,
+          0.35891
+        ]
+      },
+      "era5_pem_posthoc_vs_predictive5": {
+        "mean": 0.01347,
+        "ci95": [
+          0.0078,
+          0.01953
+        ],
+        "era_side_wins": 0.436
+      },
+      "era4_pem_posthoc_vs_predictive4": {
+        "mean": -0.00179,
+        "ci95": [
+          -0.00717,
+          0.00373
+        ],
+        "era_side_wins": 0.53
+      }
+    }
+  }
 }
