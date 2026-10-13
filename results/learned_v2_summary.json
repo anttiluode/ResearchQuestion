@@ -1,0 +1,319 @@
+{
+  "date": "2026-10-13",
+  "study": "Learned predictive memory under a hidden 32D basis and twelve-channel partial observation",
+  "protocol": "PROTOCOL_LEARNED.md",
+  "protocol_commit": "2c0504410fc05c25d803b641090d44e6a9a21662",
+  "fixture": "Different, more persistent dynamics from the original v1 exact quotient; fitted separately per apparatus",
+  "apparatus_seeds": [
+    41,
+    97
+  ],
+  "train_episodes_per_apparatus": 1200,
+  "validation_episodes": 240,
+  "test_episodes": 400,
+  "history_frames": 3,
+  "future_action_steps": 6,
+  "query_count": 6,
+  "sensor_channels": 12,
+  "epochs": 160,
+  "metric": "Pooled held-out output RMSE / held-out RMS true outputs at steps 1-6, with no further sensor readings",
+  "means": {
+    "closed": {
+      "predictive4": {
+        "future_nrmse": 0.192687,
+        "early_nrmse": 0.216673,
+        "late_nrmse": 0.164637,
+        "trainable_parameters": 290,
+        "state_float32_bytes": 16
+      },
+      "predictive5": {
+        "future_nrmse": 0.178501,
+        "early_nrmse": 0.204008,
+        "late_nrmse": 0.148464,
+        "trainable_parameters": 381,
+        "state_float32_bytes": 20
+      },
+      "pca5": {
+        "future_nrmse": 0.787912,
+        "early_nrmse": 0.904775,
+        "late_nrmse": 0.649962,
+        "trainable_parameters": 156,
+        "state_float32_bytes": 20
+      },
+      "gru5": {
+        "future_nrmse": 0.298002,
+        "early_nrmse": 0.342273,
+        "late_nrmse": 0.245395,
+        "trainable_parameters": 501,
+        "state_float32_bytes": 20
+      }
+    },
+    "bridge": {
+      "predictive4": {
+        "future_nrmse": 0.200006,
+        "early_nrmse": 0.207413,
+        "late_nrmse": 0.191951,
+        "trainable_parameters": 290,
+        "state_float32_bytes": 16
+      },
+      "predictive5": {
+        "future_nrmse": 0.157058,
+        "early_nrmse": 0.165147,
+        "late_nrmse": 0.147886,
+        "trainable_parameters": 381,
+        "state_float32_bytes": 20
+      },
+      "pca5": {
+        "future_nrmse": 0.781966,
+        "early_nrmse": 0.813266,
+        "late_nrmse": 0.749345,
+        "trainable_parameters": 156,
+        "state_float32_bytes": 20
+      },
+      "gru5": {
+        "future_nrmse": 0.24694,
+        "early_nrmse": 0.270844,
+        "late_nrmse": 0.219901,
+        "trainable_parameters": 501,
+        "state_float32_bytes": 20
+      }
+    }
+  },
+  "runs": [
+    {
+      "seed": 41,
+      "world": "closed",
+      "method": "predictive4",
+      "current_nrmse": 0.297019,
+      "early_nrmse": 0.224612,
+      "late_nrmse": 0.152729,
+      "future_nrmse": 0.192063,
+      "trainable_parameters": 290,
+      "selected_epoch": 160,
+      "state_float32_bytes": 16
+    },
+    {
+      "seed": 41,
+      "world": "closed",
+      "method": "predictive5",
+      "current_nrmse": 0.298719,
+      "early_nrmse": 0.220992,
+      "late_nrmse": 0.150881,
+      "future_nrmse": 0.189212,
+      "trainable_parameters": 381,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 41,
+      "world": "closed",
+      "method": "pca5",
+      "current_nrmse": 1.276548,
+      "early_nrmse": 0.955022,
+      "late_nrmse": 0.657383,
+      "future_nrmse": 0.819823,
+      "trainable_parameters": 156,
+      "selected_epoch": 90,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 41,
+      "world": "closed",
+      "method": "gru5",
+      "current_nrmse": 0.505096,
+      "early_nrmse": 0.337792,
+      "late_nrmse": 0.22311,
+      "future_nrmse": 0.286253,
+      "trainable_parameters": 501,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 41,
+      "world": "bridge",
+      "method": "predictive4",
+      "current_nrmse": 0.258764,
+      "early_nrmse": 0.205457,
+      "late_nrmse": 0.17408,
+      "future_nrmse": 0.190416,
+      "trainable_parameters": 290,
+      "selected_epoch": 150,
+      "state_float32_bytes": 16
+    },
+    {
+      "seed": 41,
+      "world": "bridge",
+      "method": "predictive5",
+      "current_nrmse": 0.241304,
+      "early_nrmse": 0.167234,
+      "late_nrmse": 0.131224,
+      "future_nrmse": 0.150311,
+      "trainable_parameters": 381,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 41,
+      "world": "bridge",
+      "method": "pca5",
+      "current_nrmse": 1.017704,
+      "early_nrmse": 0.795835,
+      "late_nrmse": 0.727154,
+      "future_nrmse": 0.762269,
+      "trainable_parameters": 156,
+      "selected_epoch": 70,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 41,
+      "world": "bridge",
+      "method": "gru5",
+      "current_nrmse": 0.415243,
+      "early_nrmse": 0.277975,
+      "late_nrmse": 0.205513,
+      "future_nrmse": 0.244444,
+      "trainable_parameters": 501,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 97,
+      "world": "closed",
+      "method": "predictive4",
+      "current_nrmse": 0.240896,
+      "early_nrmse": 0.208734,
+      "late_nrmse": 0.176545,
+      "future_nrmse": 0.193311,
+      "trainable_parameters": 290,
+      "selected_epoch": 160,
+      "state_float32_bytes": 16
+    },
+    {
+      "seed": 97,
+      "world": "closed",
+      "method": "predictive5",
+      "current_nrmse": 0.251047,
+      "early_nrmse": 0.187024,
+      "late_nrmse": 0.146047,
+      "future_nrmse": 0.167791,
+      "trainable_parameters": 381,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 97,
+      "world": "closed",
+      "method": "pca5",
+      "current_nrmse": 1.066381,
+      "early_nrmse": 0.854527,
+      "late_nrmse": 0.642541,
+      "future_nrmse": 0.756001,
+      "trainable_parameters": 156,
+      "selected_epoch": 130,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 97,
+      "world": "closed",
+      "method": "gru5",
+      "current_nrmse": 0.467592,
+      "early_nrmse": 0.346754,
+      "late_nrmse": 0.267681,
+      "future_nrmse": 0.309751,
+      "trainable_parameters": 501,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 97,
+      "world": "bridge",
+      "method": "predictive4",
+      "current_nrmse": 0.294521,
+      "early_nrmse": 0.209369,
+      "late_nrmse": 0.209821,
+      "future_nrmse": 0.209595,
+      "trainable_parameters": 290,
+      "selected_epoch": 160,
+      "state_float32_bytes": 16
+    },
+    {
+      "seed": 97,
+      "world": "bridge",
+      "method": "predictive5",
+      "current_nrmse": 0.215914,
+      "early_nrmse": 0.163059,
+      "late_nrmse": 0.164548,
+      "future_nrmse": 0.163805,
+      "trainable_parameters": 381,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 97,
+      "world": "bridge",
+      "method": "pca5",
+      "current_nrmse": 0.892013,
+      "early_nrmse": 0.830697,
+      "late_nrmse": 0.771536,
+      "future_nrmse": 0.801663,
+      "trainable_parameters": 156,
+      "selected_epoch": 90,
+      "state_float32_bytes": 20
+    },
+    {
+      "seed": 97,
+      "world": "bridge",
+      "method": "gru5",
+      "current_nrmse": 0.371406,
+      "early_nrmse": 0.263713,
+      "late_nrmse": 0.23429,
+      "future_nrmse": 0.249436,
+      "trainable_parameters": 501,
+      "selected_epoch": 160,
+      "state_float32_bytes": 20
+    }
+  ],
+  "paired": {
+    "closed": {
+      "predictive5_vs_predictive4": {
+        "episodes": 800,
+        "predictive5_wins_fraction": 0.5775,
+        "mean_paired_episode_advantage": 0.01352
+      },
+      "predictive5_vs_pca5": {
+        "episodes": 800,
+        "predictive5_wins_fraction": 0.9938,
+        "mean_paired_episode_advantage": 0.57998
+      },
+      "predictive5_vs_gru5": {
+        "episodes": 800,
+        "predictive5_wins_fraction": 0.81,
+        "mean_paired_episode_advantage": 0.11037
+      }
+    },
+    "bridge": {
+      "predictive5_vs_predictive4": {
+        "episodes": 800,
+        "predictive5_wins_fraction": 0.775,
+        "mean_paired_episode_advantage": 0.0417
+      },
+      "predictive5_vs_pca5": {
+        "episodes": 800,
+        "predictive5_wins_fraction": 0.9988,
+        "mean_paired_episode_advantage": 0.58596
+      },
+      "predictive5_vs_gru5": {
+        "episodes": 800,
+        "predictive5_wins_fraction": 0.8488,
+        "mean_paired_episode_advantage": 0.08604
+      }
+    }
+  },
+  "limits": [
+    "Only two apparatus seeds; runs do not establish broad generalization",
+    "Predictive5 also improves closed world; this does not prove its extra coordinate equals the bridge variable",
+    "PCA reconstructs observation windows rather than future query outcomes; GRU follows one fixed training protocol and is not a tuned strongest-RNN baseline",
+    "The models are approximate and trained with full task-response supervision, not natural images",
+    "State byte costs exclude shared encoders, update/reader weights, three-frame observation buffer, training data and compute"
+  ]
+}

@@ -9,6 +9,37 @@ An experiment growing from the January image-mandala → Sihti → Sihti2 → Si
 
 **Yes in this deliberately constructed nonlinear test, but only when the dropped residues cannot feed back into future behavior.** The method is a positive/negative *mechanism isolator*, not automatically learned state compression or a brain/AI performance claim.
 
+## Learned memory v2 — hidden coordinates, actual training
+
+The next experiment is now implemented rather than proposed. See [frozen learning protocol](PROTOCOL_LEARNED.md), [trainer](learned_memory.py), and [all per-seed scores](results/learned_v2_summary.json).
+
+**What changed:** the learning models never receive the secret 32-dimensional orthogonal basis, oracle four/five-number state, hidden coupling matrices, or privileged Jacobian probes. They see three consecutive **12-channel observations**, two preceding actions, and supervised six-query outcomes along factual training trajectories. After that short input history, they must predict **six new actions open-loop**, without seeing new sensor readings. The apparatus is a new persistent nonlinear synthetic fixture, not a natural video model and not a replay of v1's exact quotient.
+
+Each model is trained independently on apparatus seeds 41 and 97 (1,200 train / 240 validation / 400 untouched test episodes per world and seed). All models share the same action-dependent recurrent transition and output reader, while their encoders differ:
+
+| Six-step held-out NRMSE ↓ | No bridge feedback | Bridge feeds back |
+| --- | ---: | ---: |
+| Learned predictive 4-number code | 0.193 | 0.200 |
+| **Learned predictive 5-number code** | **0.179** | **0.157** |
+| Five-number reconstruction PCA | 0.788 | 0.782 |
+| Five-state ordinary GRU encoder | 0.298 | 0.247 |
+
+**Interpretation:** learning a task-directed observation representation improves held-out future predictions compared with PCA on raw sensor histories in this fixture. A fifth learned coordinate helps more in the bridge world, but **also helps in the closed world** (0.193 → 0.179); this does not prove it discovered the exact bridge variable. The GRU result is a baseline under one fixed learning schedule, not a hyperparameter-tuned verdict against recurrent networks. None of these models achieves an exact predictive quotient. Two apparatus seeds and supervised synthetic query labels cannot support a claim about natural images or competitive AI architecture.
+
+**Storage:** four float32 state values = 16 bytes; five = 20 bytes *per retained episode state*. Shared encoder/update/reader parameters are additional: predictive4 **290** trainable scalars, predictive5 **381**, PCA5 **156** trained plus a frozen projection, GRU5 **501**. Short observation histories, training costs and model sharing must also be included; quoting the retained bytes alone would be misleading.
+
+To reproduce from scratch:
+
+```bash
+pip install -r requirements-learned.txt
+pytest -q tests/test_learned_memory.py
+python learned_memory.py --output results/learned_memory_v2.json
+```
+
+The script writes unrounded per-episode test scores; the committed compact receipt records every seed/method/metric and paired comparisons. The existing [v1 protocol](PROTOCOL.md) remains a separate **analytically engineered** exact-state experiment.
+
+---
+
 ## The distinction
 
 An encoder `m=E(X)` can be sufficient for every **current** permitted output yet insufficient for tomorrow. A **future-sufficient** representation also supports a closed update law:
