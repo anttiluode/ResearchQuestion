@@ -1,0 +1,42 @@
+name: Reproduce learned-memory v2
+
+on:
+  pull_request:
+    paths:
+      - 'learned_memory.py'
+      - 'tests/test_learned_memory.py'
+      - 'requirements-learned.txt'
+      - 'PROTOCOL_LEARNED.md'
+      - 'results/learned_v2_summary.json'
+      - 'scripts/check_learned_receipt.py'
+      - '.github/workflows/learned.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  learned-sensor-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numeric and test dependencies
+        run: python -m pip install "numpy>=1.24,<3" "pytest>=8,<10"
+      - name: Install PyTorch CPU
+        run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Check model invariants
+        run: python -m pytest -q tests/test_learned_memory.py
+      - name: Run original two-seed experiment
+        run: OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python learned_memory.py --output learned-reproduction.json
+      - name: Compare independently regenerated receipt
+        run: python scripts/check_learned_receipt.py learned-reproduction.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: learned-v2-complete-reproduction
+          path: learned-reproduction.json
+          if-no-files-found: ignore
