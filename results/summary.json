@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-13",
+  "protocol_commit": "a1631be9488a14f864e8f7dcc32f2f378dc6fdb5",
+  "seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008
+  ],
+  "steps": 12,
+  "episodes_per_seed": 24,
+  "worlds": {
+    "closed": {
+      "leak": 0,
+      "ambient_step_jacobian_rank": 32,
+      "discovered_lens_rank": 4,
+      "lens_projector_error": {
+        "mean": 3.0876923248919315e-11,
+        "max": 5.148066631566709e-11
+      },
+      "core_only_future_nrmse": {
+        "mean": 3.912508528697475e-16,
+        "max": 4.79587391509978e-16
+      },
+      "core_plus_bridge_future_nrmse": {
+        "mean": 3.912508528697475e-16,
+        "max": 4.79587391509978e-16
+      },
+      "exact_sieve_relative_error": {
+        "mean": 1.1780843878672103e-16,
+        "max": 1.3249385647682892e-16
+      },
+      "changed_bridge_next_response_l2": {
+        "mean": 6.676651304544633e-16,
+        "max": 7.92683469296096e-16
+      },
+      "changed_nuisance_future_nrmse": {
+        "mean": 8.148528403227931e-16,
+        "max": 1.0296206081942154e-15
+      }
+    },
+    "bridge_needed": {
+      "leak": 0.28,
+      "ambient_step_jacobian_rank": 32,
+      "discovered_lens_rank": 5,
+      "lens_projector_error": {
+        "mean": 4.2192498335861733e-11,
+        "max": 5.962826200962437e-11
+      },
+      "core_only_future_nrmse": {
+        "mean": 0.27365545207489506,
+        "max": 0.376062886647582
+      },
+      "core_plus_bridge_future_nrmse": {
+        "mean": 4.531308723163238e-16,
+        "max": 5.731792429949722e-16
+      },
+      "exact_sieve_relative_error": {
+        "mean": 1.1780843878672103e-16,
+        "max": 1.3249385647682892e-16
+      },
+      "changed_bridge_next_response_l2": {
+        "mean": 0.8243117241389537,
+        "max": 0.9456167062188122
+      },
+      "changed_nuisance_future_nrmse": {
+        "mean": 7.939451006702287e-16,
+        "max": 9.260008807766183e-16
+      }
+    }
+  },
+  "gates": {
+    "G0_exact_sieve": true,
+    "G1_closed_core": true,
+    "G2_leak_breaks_core": true,
+    "G3_bridge_restores_closure": true,
+    "G4_nuisance_can_go": true,
+    "G5_lens_recovers_ranks": true,
+    "G6_bridge_pair_diverges": true,
+    "G7_full_rank_law_small_future_code": true
+  },
+  "scope": "Synthetic engineered nonlinear dynamics; shared and privileged decoder/basis not counted in marginal code bytes",
+  "payload_bytes": {
+    "full": 256,
+    "core": 32,
+    "core_plus_bridge": 40
+  },
+  "note": "Rounded per-seed values are in seed_summary.csv. Regenerate unrounded full receipt using python run_experiment.py."
+}
