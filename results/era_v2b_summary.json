@@ -1,0 +1,195 @@
+{
+  "date": "2026-10-13",
+  "study": "Classical switched-system Ho-Kalman/ERA baseline on the v2 learned-memory fixture",
+  "protocol": "PROTOCOL_ERA.md",
+  "protocol_commit": "0e1db34",
+  "data": "identical to v2 (learned_memory.build_splits), seeds 41 and 97",
+  "metric": "identical to v2: pooled RMSE / RMS true outputs, steps 1-6 open loop",
+  "means": {
+    "closed": {
+      "era4": {
+        "current_nrmse": 0.356214,
+        "early_nrmse": 0.379002,
+        "late_nrmse": 0.449934,
+        "future_nrmse": 0.416011,
+        "shared_parameters": 286,
+        "state_float32_bytes": 16
+      },
+      "era5": {
+        "current_nrmse": 0.276872,
+        "early_nrmse": 0.345112,
+        "late_nrmse": 0.471303,
+        "future_nrmse": 0.413739,
+        "shared_parameters": 376,
+        "state_float32_bytes": 20
+      },
+      "era4_pem_posthoc": {
+        "current_nrmse": 0.245964,
+        "early_nrmse": 0.171495,
+        "late_nrmse": 0.130742,
+        "future_nrmse": 0.152782,
+        "shared_parameters": 290,
+        "state_float32_bytes": 16
+      },
+      "era5_pem_posthoc": {
+        "current_nrmse": 0.245711,
+        "early_nrmse": 0.174925,
+        "late_nrmse": 0.133309,
+        "future_nrmse": 0.15581,
+        "shared_parameters": 381,
+        "state_float32_bytes": 20
+      }
+    },
+    "bridge": {
+      "era4": {
+        "current_nrmse": 0.327228,
+        "early_nrmse": 0.42061,
+        "late_nrmse": 0.678057,
+        "future_nrmse": 0.564222,
+        "shared_parameters": 286,
+        "state_float32_bytes": 16
+      },
+      "era5": {
+        "current_nrmse": 0.283706,
+        "early_nrmse": 0.318878,
+        "late_nrmse": 0.503001,
+        "future_nrmse": 0.42134,
+        "shared_parameters": 376,
+        "state_float32_bytes": 20
+      },
+      "era4_pem_posthoc": {
+        "current_nrmse": 0.261147,
+        "early_nrmse": 0.188476,
+        "late_nrmse": 0.218206,
+        "future_nrmse": 0.204079,
+        "shared_parameters": 290,
+        "state_float32_bytes": 16
+      },
+      "era5_pem_posthoc": {
+        "current_nrmse": 0.201212,
+        "early_nrmse": 0.164336,
+        "late_nrmse": 0.194817,
+        "future_nrmse": 0.180406,
+        "shared_parameters": 381,
+        "state_float32_bytes": 20
+      }
+    }
+  },
+  "learned_v2_reference": {
+    "closed": {
+      "predictive4": 0.192687,
+      "predictive5": 0.178501,
+      "gru5": 0.298002,
+      "pca5": 0.787912
+    },
+    "bridge": {
+      "predictive4": 0.200006,
+      "predictive5": 0.157058,
+      "gru5": 0.24694,
+      "pca5": 0.781966
+    }
+  },
+  "primary_verdicts": {
+    "closed": {
+      "era5_minus_predictive5_future": 0.2352,
+      "reading": "learned model adds value beyond the linear Hankel quotient"
+    },
+    "bridge": {
+      "era5_minus_predictive5_future": 0.2643,
+      "reading": "learned model adds value beyond the linear Hankel quotient"
+    }
+  },
+  "bridge_question": {
+    "closed": {
+      "era5_minus_era4_future": -0.0023,
+      "predictive5_minus_predictive4_future": -0.0142
+    },
+    "bridge": {
+      "era5_minus_era4_future": -0.1429,
+      "predictive5_minus_predictive4_future": -0.0429
+    }
+  },
+  "posthoc_diagnostic": {
+    "what": "ERA realization refined by linear prediction-error least squares on the full 6-step training horizon (scipy trf, 40 evaluations, no validation tuning). Same 381 parameters as Predictive5 at n=5. NOT pre-registered; added after the primary result to locate the gap.",
+    "pem5_minus_predictive5_future": {
+      "closed": -0.0227,
+      "bridge": 0.0233
+    },
+    "pem4_minus_predictive4_future": {
+      "closed": -0.0399,
+      "bridge": 0.0041
+    }
+  },
+  "limits": [
+    "Two apparatus seeds only",
+    "The PEM rows are post-hoc diagnostics, not frozen comparisons",
+    "Linear models on a nonlinear fixture; no claim about natural images"
+  ],
+  "paired_vs_regenerated_v2": {
+    "source": "CI run 38402521300: v2 learned run regenerated with torch (matched its receipt), ERA regenerated (matched its receipt); 800 test episodes per world (2 seeds x 400); bootstrap 4000; positive = ERA-side worse",
+    "closed": {
+      "era5_vs_predictive5": {
+        "mean": 0.22907,
+        "ci95": [
+          0.21861,
+          0.23943
+        ]
+      },
+      "era4_vs_predictive4": {
+        "mean": 0.21784,
+        "ci95": [
+          0.20758,
+          0.22764
+        ]
+      },
+      "era5_pem_posthoc_vs_predictive5": {
+        "mean": -0.02098,
+        "ci95": [
+          -0.02594,
+          -0.01561
+        ],
+        "era_side_wins": 0.625
+      },
+      "era4_pem_posthoc_vs_predictive4": {
+        "mean": -0.03731,
+        "ci95": [
+          -0.04201,
+          -0.03248
+        ],
+        "era_side_wins": 0.698
+      }
+    },
+    "bridge": {
+      "era5_vs_predictive5": {
+        "mean": 0.25729,
+        "ci95": [
+          0.24748,
+          0.26693
+        ]
+      },
+      "era4_vs_predictive4": {
+        "mean": 0.34497,
+        "ci95": [
+          0.33201,
+          0.35891
+        ]
+      },
+      "era5_pem_posthoc_vs_predictive5": {
+        "mean": 0.01347,
+        "ci95": [
+          0.0078,
+          0.01953
+        ],
+        "era_side_wins": 0.436
+      },
+      "era4_pem_posthoc_vs_predictive4": {
+        "mean": -0.00179,
+        "ci95": [
+          -0.00717,
+          0.00373
+        ],
+        "era_side_wins": 0.53
+      }
+    }
+  }
+}

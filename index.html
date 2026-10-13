@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./site.css">
   <script defer src="./site.js"></script>
   <script defer src="./learned-site.js"></script>
+  <script defer src="./era-site.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to experiment</a>
@@ -19,7 +20,7 @@
     <nav aria-label="Site navigation">
       <a href="#experiment">Experiment</a>
       <a href="#principle">Principle</a>
-      <a href="#evidence">Evidence</a><a href="#learned">Learned v2</a>
+      <a href="#evidence">Evidence</a><a href="#learned">Learned v2</a><a href="#classical">Classical check</a>
       <a href="#next">Next model</a>
     </nav>
     <a class="header-link" href="https://github.com/anttiluode/ResearchQuestion" target="_blank" rel="noreferrer">Source <span aria-hidden="true">↗</span></a>
@@ -227,8 +228,53 @@
       <p class="instrument-note">The original browser instrument above still illustrates the hand-designed v1 mechanism. This section reports a separate v2 PyTorch learning experiment, trained on two synthetic apparatus seeds. Neither is yet an image model.</p>
     </section>
 
+    <section id="classical" class="learned-section section-wrap">
+      <div class="section-heading">
+        <div>
+          <div class="section-index">05 / THE CLASSICAL CHECK</div>
+          <h2>Does learning beat <em>the textbook answer?</em></h2>
+          <p>Realization theory computes a minimal memory in closed form: the rank of the map from pasts to futures. Same data, same split, same metric — no gradient descent.</p>
+        </div>
+        <span class="proposal-pill measured-pill">MEASURED · FROZEN FIRST</span>
+      </div>
+      <div class="learned-layout">
+        <div class="learned-chart-panel">
+          <div class="learned-controls">
+            <label for="era-world">World
+              <select id="era-world">
+                <option value="bridge">Bridge feeds back</option>
+                <option value="closed">Bridge cannot feed back</option>
+              </select>
+            </label>
+          </div>
+          <p class="learned-chart-key">Six-step held-out error · <strong>shorter bars are better</strong></p>
+          <div class="learned-bars" aria-label="Six-step errors for learned and classical memories">
+            <div class="learned-bar-item"><div class="learned-bar-heading"><span>Learned predictive · 5 (v2)</span><strong data-era-value="predictive5">0.157</strong></div><div class="learned-track"><div class="learned-bar focus" data-era-bar="predictive5" style="width:27%"></div></div></div>
+            <div class="learned-bar-item"><div class="learned-bar-heading"><span>Ho–Kalman / ERA · 5, closed form</span><strong data-era-value="era5">0.421</strong></div><div class="learned-track"><div class="learned-bar alternate" data-era-bar="era5" style="width:72%"></div></div></div>
+            <div class="learned-bar-item"><div class="learned-bar-heading"><span>ERA · 5 + linear refinement (post-hoc)</span><strong data-era-value="era5_pem_posthoc">0.180</strong></div><div class="learned-track"><div class="learned-bar regular" data-era-bar="era5_pem_posthoc" style="width:31%"></div></div></div>
+          </div>
+          <div class="learned-chart-bottom">
+            <span id="era-status">Mean of apparatus seeds 41 and 97 · 400 held-out episodes per seed</span>
+            <a href="./results/era_v2b_summary.json" target="_blank" rel="noreferrer">View data ↗</a>
+          </div>
+        </div>
+        <div class="learned-description">
+          <div class="card-overline">WHAT THE HANKEL RANK SAYS</div>
+          <h3>Pure ERA loses.<br><em>But it sees the bridge.</em></h3>
+          <p>Value of the fifth coordinate (six-step error, 5 minus 4). The closed form spends it only where the bridge is causal.</p>
+          <div class="learned-fact"><strong>−0.143</strong><span>ERA, bridge world. Closed world: −0.002 — essentially nothing.</span></div>
+          <div class="learned-fact"><strong>−0.043</strong><span>Learned, bridge world. Closed world: −0.014 — the learned fifth coordinate helps where no bridge exists.</span></div>
+        </div>
+      </div>
+      <div class="insight-strip learned-caution">
+        <div class="insight-icon">≈</div>
+        <p><strong>The honest ledger:</strong> under the frozen protocol, pure ERA loses by ~0.25 — its shift law is fitted from two-action words and extrapolated to six. A post-hoc, strictly linear refinement on the full horizon (same 381 parameters) <em>beats</em> the learned model in the closed world (0.156 vs 0.179) and trails it in the bridge world (0.180 vs 0.157). So the learned memory's surplus over textbook system identification is confined to the nonlinear bridge case.</p>
+      </div>
+      <p class="instrument-note">ERA is verified to recover an exact linear switched system to below 10⁻⁶. The refinement rows were added after the frozen result to locate the gap and are labelled as such.</p>
+    </section>
+
     <section id="next" class="next-section section-wrap">
-      <div class="section-heading"><div><div class="section-index">05 / THE NEXT QUESTION</div><h2>From a toy state <em>to a visual memory.</em></h2><p>What would an image model have to learn rather than receive from the experimenter?</p></div><span class="proposal-pill">PROPOSED · NOT TRAINED</span></div>
+      <div class="section-heading"><div><div class="section-index">06 / THE NEXT QUESTION</div><h2>From a toy state <em>to a visual memory.</em></h2><p>What would an image model have to learn rather than receive from the experimenter?</p></div><span class="proposal-pill">PROPOSED · NOT TRAINED</span></div>
       <div class="roadmap">
         <article><div class="step-id">01</div><div class="roadmap-icon">◫</div><h3>Observe a scene</h3><p>Use short clips, not a single static image, so the model can distinguish otherwise identical snapshots with different histories.</p></article>
         <div class="roadmap-chevron" aria-hidden="true">→</div>

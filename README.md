@@ -38,6 +38,43 @@ python learned_memory.py --output results/learned_memory_v2.json
 
 The script writes unrounded per-episode test scores; the committed compact receipt records every seed/method/metric and paired comparisons. The existing [v1 protocol](PROTOCOL.md) remains a separate **analytically engineered** exact-state experiment.
 
+## Classical check v2b — does the learned memory beat Ho–Kalman?
+
+The minimal state of a system has a closed-form answer in realization theory: the rank of the map from pasts to futures (the Hankel operator; Ho–Kalman 1966, here in its switched-system form, one shift operator per action). v2b asks whether v2's gradient-trained memory beats that textbook answer. [Frozen protocol](PROTOCOL_ERA.md) committed before scoring · [code](era_baseline.py) · [summary](results/era_v2b_summary.json) · [full per-episode receipt](results/era_v2b.json).
+
+**Method:** identical v2 data, split, 44 history features, metric and open-loop rollout. No gradient descent. Ridge-regress each action word's task response on the past (words up to length 2–3), stack the results into a generalized Hankel matrix, cut it to rank *n* by SVD, then solve one least-squares shift per action. The method is checked on an exact linear switched system: it recovers the system to < 10⁻⁶, and the singular values drop by > 10³ exactly at the true rank.
+
+| Six-step held-out NRMSE ↓ (mean of seeds 41, 97) | Closed | Bridge |
+| --- | ---: | ---: |
+| Learned predictive 4 (v2) | 0.193 | 0.200 |
+| Learned predictive 5 (v2) | 0.179 | **0.157** |
+| **ERA 4**, closed form, frozen | 0.416 | 0.564 |
+| **ERA 5**, closed form, frozen | 0.414 | 0.421 |
+| ERA 4 + linear PEM refinement *(post-hoc)* | **0.153** | 0.204 |
+| ERA 5 + linear PEM refinement *(post-hoc)* | 0.156 | 0.180 |
+
+**1. Frozen verdict: the learned model wins against pure ERA in both worlds** (ERA5 − Predictive5 = +0.235 closed, +0.264 bridge; the pre-declared threshold was 0.02). The current-answer errors are similar, because both use a linear encoder on the same features (ERA5 0.28 in both worlds; Predictive5 0.28 closed, 0.23 bridge). The gap opens in the late steps: ERA's shift law is estimated from words of at most two actions and then extrapolated to six. Its validation-selected depth was 2 everywhere, because three-action words have only about 19 episodes each.
+
+**2. The closed form is the cleaner bridge detector.** Going from 4 to 5 coordinates is worth −0.002 for ERA in the closed world and −0.143 in the bridge world. The validation rank scan shows a clear 4→5 drop only in the bridge world. For the learned models the same gains are −0.014 and −0.043. v2's open caveat was "the fifth coordinate also helps in the closed world". The Hankel rank does not show that effect, so the learned closed-world gain is more likely optimization slack than a fifth causal dimension. This is a reading, not a proof.
+
+**3. Post-hoc diagnostic (not pre-registered).** This step refines the ERA realization by classical, strictly linear prediction-error least squares on the full six-step horizon. It uses the same 381 parameters as Predictive5, 40 solver evaluations and no validation tuning. In the closed world this linear model *beats* the learned one (0.156 vs 0.179). In the bridge world the learned tanh model keeps an edge (0.157 vs 0.180, +0.023), plausibly because the bridge couples through nonlinearities: `tanh(s₀)` drives the bridge, and the bridge enters inside `tanh`.
+
+**What this changes:** "predictive training beats reconstruction" still stands, since PEM is also predictive. But v2's learned memory does **not** beat textbook system identification in the closed world, once that identification uses its standard refinement step. The measurable surplus of the learned model is confined to the bridge world, where nonlinearity matters. **Episode-paired check** (CI regenerated the v2 learned run with torch, matching its receipt, and paired it with ERA on the same 800 test episodes per world; bootstrap 95% CIs on the mean per-episode NRMSE difference, positive = classical side worse):
+
+| | Closed | Bridge |
+| --- | ---: | ---: |
+| ERA5 − Predictive5 (frozen) | +0.229 [+0.219, +0.239] | +0.257 [+0.247, +0.267] |
+| ERA5+PEM − Predictive5 (post-hoc) | **−0.021** [−0.026, −0.016] | **+0.013** [+0.008, +0.020] |
+| ERA4+PEM − Predictive4 (post-hoc) | **−0.037** [−0.042, −0.032] | −0.002 [−0.007, +0.004] |
+
+Both directions are outside noise: the linear classical model is genuinely better in the closed world, and the learned tanh model is genuinely, if modestly, better in the bridge world.
+
+```bash
+pip install numpy scipy pytest torch   # torch only because learned_memory.py imports it
+pytest -q tests/test_era_baseline.py
+python era_baseline.py --output results/era_v2b.json   # ~1 s for ERA, minutes for the PEM diagnostic
+```
+
 ---
 
 ## The distinction
